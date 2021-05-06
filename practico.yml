@@ -1,0 +1,42 @@
+---
+- name: playbook examen
+  hosts: node-one
+  become: yes
+  tasks: 
+  - name: crear grupo
+    group: name=user state=present
+
+  - name: crear usuario
+    user: name=admin group=user
+  - name : actualizar repositorio
+    apt: update_cache=yes
+  # lo dejo comentado para no perder tiempo actualizando
+  #- name: actulizar los paquetes
+   # apt: upgrade=disk
+
+- name: playbook examen
+  hosts: node-two
+  become: yes
+  tasks: 
+  - name: crear grupo
+    group: name=user state=present
+
+  - name: crear usuario
+    user: name=dev group=user
+
+- name: play 2 
+  hosts: node-one
+  become: yes
+  tasks:
+    - name: copiar fichero
+      copy:  src=/home/vagrant/examenPrac/admin.txt  dest=/tmp
+- name: play 2 
+  hosts: node-two
+  become: yes
+  tasks:
+    - name: copiar fichero
+      copy:  src=/home/vagrant/examenPrac/dev.txt  dest=/tmp
+   
+   
+
+...
