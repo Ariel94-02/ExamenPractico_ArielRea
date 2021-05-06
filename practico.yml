@@ -7,7 +7,7 @@
     group: name=user state=present
 
   - name: crear usuario
-    user: name=admin group=user
+    user: name=admin group=user password=123
   - name : actualizar repositorio
     apt: update_cache=yes
   # lo dejo comentado para no perder tiempo actualizando
@@ -22,7 +22,7 @@
     group: name=user state=present
 
   - name: crear usuario
-    user: name=dev group=user
+    user: name=dev group=user password=123
 
 - name: play 2 
   hosts: node-one
